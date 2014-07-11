@@ -1,0 +1,19 @@
+{
+	"server": {
+		"port": 3005,
+		"host": "localhost"
+	},
+	"src": "app/",
+	"dest": "dist/",
+	"js": {
+		"dist/js/main.min.js": ["app/js/main.js"]
+	},
+	"less": {
+		"dist/css/main.min.css": ["app/less/main.less"]
+	},
+	"sprite": {
+		"src": "app/sprite/*.png",
+		"destImg": "dist/css/sprite.png",
+		"destCSS": "dist/css/sprites.css"
+	}
+}
