@@ -18,6 +18,25 @@ module.exports = function(grunt) {
 				files: '<%= project.less %>'
 			}
 		},
+		autoprefixer: {
+      options: {
+        cascade: false,
+        browsers: ['last 2 version', '> 10%', 'ie 9']
+      },
+      dist: {
+        src: '<%= project.dest %>css/*.css'
+      }
+    },
+    cssmin: {
+      dist: {
+        files: [{
+          expand: true,
+          cwd: '<%= project.dest %>css/',
+          src: ['**/*.css'],
+          dest: '<%= project.dest %>css/'
+        }]
+      }
+    },
 		uglify: {
 			options: {
 				mangle: false
@@ -30,7 +49,7 @@ module.exports = function(grunt) {
 			dynamic: {
 				files: [{
 					expand: true,
-					cwd: '<%= project.src %>img/',
+					cwd: '<%= project.src %>/assets/img/',
 					src: ['**/*.{png,jpg,gif}'],
 					dest: '<%= project.dest %>img/'
 				}]
@@ -43,18 +62,11 @@ module.exports = function(grunt) {
 			stuff: {
 				files: [
 					{
-						cwd:'<%= project.src %>',
+						cwd:'<%= project.src %>/public/',
 						src: ['**/*'],
 						dest: '<%= project.dest %>'
 					}
-				],
-				options: {
-					ignore: [
-						'<%= project.src %>js{,/**/*}',
-						'<%= project.src %>less{,/**/*}',
-						'<%= project.src %>sprite{,/**/*}'
-					]
-				}
+				]
 			}
 		},
 		connect: {
@@ -63,45 +75,46 @@ module.exports = function(grunt) {
 					port: '<%= project.server.port %>',
 					base: '<%= project.dest %>',
 					hostname: '<%= project.server.host %>',
-					keepalive: true
+					keepalive: true,
+					open: true
 				}
 			}
 		},
 		watch: {
 			js: {
-				files: ['<%= project.src %>**/*.js'],
+				files: ['**/*.js'],
 				tasks: ['concat:js','uglify'],
 				options: {
+					cwd: '<%= project.src %>/assets/js/',
 					livereload: true,
-					atBegin: true,
-					interval: 500
+					atBegin: true
 				}
 			},
 			css: {
-				files: ['<%= project.src %>less/*.less'],
+				files: ['**/*.less'],
 				tasks: ['less:style'],
 				options: {
+					cwd: '<%= project.src %>/assets/less/'
 					livereload: true,
-					atBegin: true,
-					interval: 500
+					atBegin: true
 				}
 			},
 			spritegeneration: {
-				files: ['<%= project.src %>sprite/**/*'],
+				files: ['**/*'],
 				tasks: ['sprite'],
 				options: {
+					cwd: '<%= project.src %>/assets/sprite/'
 					livereload: true,
-					atBegin: true,
-					interval: 500
+					atBegin: true
 				}
 			},
 			copyto: {
-				files: ['<%= project.src %>**/*','!<%= project.src %>**/*.{png,jpg,gif,less,js}'],
+				files: ['**/*'],
 				tasks: ['copyto:stuff'],
 				options: {
+					cwd: '<%= project.src %>/public/'
 					livereload: true,
-					atBegin: true,
-					interval: 500
+					atBegin: true
 				}
 			}
 		}
@@ -121,7 +134,9 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-copy-to');
 	grunt.loadNpmTasks('grunt-notify');
 	grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks('grunt-contrib-cssmin');
+	grunt.loadNpmTasks('grunt-autoprefixer');
 
-	grunt.registerTask('dev', ['watch']);
-	grunt.registerTask('build', ['copyto','less','uglify:js','imagemin','sprite']);
+	grunt.registerTask('dev', ['watch','connect']);
+	grunt.registerTask('build', ['copyto','less','concat','autoprefixer','imagemin','sprite','cssmin','uglify:js','connect']);
 };

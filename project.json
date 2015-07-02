@@ -6,14 +6,27 @@
 	"src": "app/",
 	"dest": "dist/",
 	"js": {
-		"dist/js/main.min.js": ["app/js/main.js"]
+		"dist/js/components.min.js": [
+			"app/assets/js/components/*.js"
+		],
+		"dist/js/libs.min.js": [
+			"app/assets/js/libs/*.js"
+		],
+		"dist/js/pages.min.js": [
+			"app/assets/js/page/*.js"
+		],
+		"dist/js/main.min.js": [
+			"app/assets/js/main.js"
+		]
 	},
 	"less": {
-		"dist/css/main.min.css": ["app/less/main.less"]
+		"dist/css/main.min.css": [
+			"app/assets/less/main.less"
+		]
 	},
 	"sprite": {
-		"src": "app/sprite/*.png",
+		"src": "app/assests/sprite/*.png",
 		"destImg": "dist/css/sprite.png",
-		"destCSS": "dist/css/sprites.css"
+		"destCSS": "dist/css/sprite.css"
 	}
 }

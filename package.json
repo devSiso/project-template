@@ -1,26 +1,31 @@
 {
 	"name": "front-end-template",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"description": "Template used to front end projects",
 	"main": "Gruntfile.js",
 	"devDependencies": {
-		"grunt": "latest",
-		"grunt-contrib-less": "latest",
-		"grunt-contrib-watch": "latest",
-		"grunt-contrib-concat": "latest",
-		"grunt-contrib-uglify": "latest",
+		"grunt": 									"latest",
+		"grunt-contrib-less": 		"latest",
+		"grunt-contrib-watch": 		"latest",
+		"grunt-contrib-concat": 	"latest",
+		"grunt-contrib-uglify": 	"latest",
 		"grunt-contrib-imagemin": "latest",
-		"grunt-copy-to": "latest",
-		"grunt-notify": "latest",
-		"clean-css": "latest",
-		"grunt-spritesmith": "latest",
-		"grunt-contrib-connect": "latest"
+		"grunt-copy-to": 					"latest",
+		"grunt-notify": 					"latest",
+		"clean-css": 							"latest",
+		"grunt-spritesmith": 			"latest",
+		"grunt-contrib-connect": 	"latest",
+		"grunt-contrib-cssmin": 	"latest",
+		"grunt-autoprefixer": 		"latest"
 	},
 	"keywords": [
 		"template",
 		"html",
 		"project"
 	],
+	"scripts": {
+		"install": "grunt build"
+	},
 	"author": "Vinicius Marques",
 	"license": "ISC"
 }
