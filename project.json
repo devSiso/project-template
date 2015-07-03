@@ -26,7 +26,7 @@
 	},
 	"sprite": {
 		"src": "app/assests/sprite/*.png",
-		"destImg": "dist/css/sprite.png",
-		"destCSS": "dist/css/sprite.css"
+		"dest": "dist/css/sprite.png",
+		"destCss": "dist/css/sprite.css"
 	}
 }

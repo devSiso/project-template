@@ -19,24 +19,24 @@ module.exports = function(grunt) {
 			}
 		},
 		autoprefixer: {
-      options: {
-        cascade: false,
-        browsers: ['last 2 version', '> 10%', 'ie 9']
-      },
-      dist: {
-        src: '<%= project.dest %>css/*.css'
-      }
-    },
-    cssmin: {
-      dist: {
-        files: [{
-          expand: true,
-          cwd: '<%= project.dest %>css/',
-          src: ['**/*.css'],
-          dest: '<%= project.dest %>css/'
-        }]
-      }
-    },
+			options: {
+				cascade: false,
+				browsers: ['last 2 version', '> 10%', 'ie 9']
+			},
+			dist: {
+				src: '<%= project.dest %>css/*.css'
+			}
+		},
+		cssmin: {
+			dist: {
+				files: [{
+					expand: true,
+					cwd: '<%= project.dest %>css/',
+					src: ['**/*.css'],
+					dest: '<%= project.dest %>css/'
+				}]
+			}
+		},
 		uglify: {
 			options: {
 				mangle: false
@@ -60,13 +60,12 @@ module.exports = function(grunt) {
 		},
 		copyto: {
 			stuff: {
-				files: [
-					{
-						cwd:'<%= project.src %>/public/',
-						src: ['**/*'],
-						dest: '<%= project.dest %>'
-					}
-				]
+				files: [{
+					cwd: '<%= project.src %>public/',
+					src: ['**/*'],
+					dest: '<%= project.dest %>',
+					expand: true
+				}]
 			}
 		},
 		connect: {
@@ -83,7 +82,7 @@ module.exports = function(grunt) {
 		watch: {
 			js: {
 				files: ['**/*.js'],
-				tasks: ['concat:js','uglify'],
+				tasks: ['concat:js', 'uglify'],
 				options: {
 					cwd: '<%= project.src %>/assets/js/',
 					livereload: true,
@@ -94,7 +93,7 @@ module.exports = function(grunt) {
 				files: ['**/*.less'],
 				tasks: ['less:style'],
 				options: {
-					cwd: '<%= project.src %>/assets/less/'
+					cwd: '<%= project.src %>/assets/less/',
 					livereload: true,
 					atBegin: true
 				}
@@ -103,7 +102,7 @@ module.exports = function(grunt) {
 				files: ['**/*'],
 				tasks: ['sprite'],
 				options: {
-					cwd: '<%= project.src %>/assets/sprite/'
+					cwd: '<%= project.src %>/assets/sprite/',
 					livereload: true,
 					atBegin: true
 				}
@@ -112,7 +111,7 @@ module.exports = function(grunt) {
 				files: ['**/*'],
 				tasks: ['copyto:stuff'],
 				options: {
-					cwd: '<%= project.src %>/public/'
+					cwd: '<%= project.src %>/public/',
 					livereload: true,
 					atBegin: true
 				}
@@ -122,7 +121,9 @@ module.exports = function(grunt) {
 
 	grunt.event.on('watch', function(action, filepath, target) {
 		var notify = require('./node_modules/grunt-notify/lib/notify-lib.js');
-		notify({message: filepath + ' has ' + action});
+		notify({
+			message: filepath + ' has ' + action
+		});
 	});
 
 	grunt.loadNpmTasks('grunt-contrib-connect');
@@ -137,6 +138,6 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-autoprefixer');
 
-	grunt.registerTask('dev', ['watch','connect']);
-	grunt.registerTask('build', ['copyto','less','concat','autoprefixer','imagemin','sprite','cssmin','uglify:js','connect']);
+	grunt.registerTask('dev', ['watch', 'connect']);
+	grunt.registerTask('build', ['copyto', 'less', 'concat', 'autoprefixer', 'imagemin', 'sprite', 'cssmin', 'uglify:js', 'connect']);
 };
