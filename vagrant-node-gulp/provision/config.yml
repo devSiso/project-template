@@ -1,0 +1,5 @@
+vm:
+  memory: 512
+  name: project-template
+database:
+  dbname: project-template
