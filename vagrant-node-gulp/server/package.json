@@ -1,0 +1,18 @@
+{
+  "name": "server",
+  "version": "0.0.1",
+  "main": "index",
+  "engines": {
+    "node": ">=0.10.5"
+  },
+  "scripts": {
+    "start": "supervisor -W index.js",
+    "vagrant": "supervisor -W index.js &"
+  },
+  "dependencies": {
+    "hapi": "1.8.x",
+    "lout": "0.4.x",
+    "handlebars": "1.0.x"
+  },
+  "private": "true"
+}
