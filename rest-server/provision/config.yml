@@ -1,0 +1,3 @@
+vm:
+  memory: 512
+  name: rest-server

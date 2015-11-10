@@ -10,9 +10,9 @@
     "vagrant": "supervisor -W index.js &"
   },
   "dependencies": {
-    "hapi": "1.8.x",
-    "lout": "0.4.x",
-    "handlebars": "1.0.x"
+    "handlebars": "1.0.x",
+    "hapi": "^1.8.3",
+    "lout": "0.4.x"
   },
   "private": "true"
 }

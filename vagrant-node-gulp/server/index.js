@@ -1,14 +1,10 @@
+'use strict';
+
 var Hapi = require('hapi');
-var routes = require('./routes/index');
 
-var config = {};
-var server = new Hapi.Server('127.0.0.1', 8000, config);
+var server = new Hapi.Server();
+server.connection({ port: 3000 });
 
-server.pack.require({ lout: { endpoint: '/docs' } }, function (err) {
-  if (err) {
-    console.log('Failed loading plugins');
-  }
+server.start(function () {
+  console.log('Server running at:', server.info.uri);
 });
-
-server.addRoutes(routes);
-server.start();
