@@ -48,8 +48,7 @@ echo "+ install required global NPM packages"
 npm install -g supervisor gulp 1>/dev/null 2>&1
 
 echo "+ project setup"
-cd /srv/shared/ ; npm install 2>&1
-cd /srv/shared/app/ ; gulp build 1>/dev/null 2>&1
-cd /srv/shared/server/ ; npm run-script vagrant 1>/dev/null 2>&1
+cd /srv/shared/ ; npm install ; gulp build 1>/dev/null 2>&1
+cd /srv/shared/server/ ; npm install ; npm run-script vagrant 1>/dev/null 2>&1
 
 exit 0

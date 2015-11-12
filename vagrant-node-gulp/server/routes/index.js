@@ -1,9 +1,7 @@
 module.exports = [{
-	method: 'GET',
-	path: '/test',
-	config: {
-		handler: function (request) {
-			request.reply({test:true});
-		}
-	}
+  method: 'GET',
+  path: '/',
+  handler: function (request, reply) {
+    reply('Hello, world!');
+  }
 }];
