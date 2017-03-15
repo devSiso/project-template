@@ -1,0 +1,14 @@
+npm-debug.log
+.npm
+.node_repl_history
+node_modules
+.DS_Store
+**/.DS_Store
+dist
+.vagrant
+app/platforms
+app/platforms/*
+app/plugins
+app/plugins/*
+app/www
+app/www/*
