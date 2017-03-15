@@ -1,0 +1,14 @@
+npm-debug.log
+.npm
+.node_repl_history
+node_modules
+.DS_Store
+**/.DS_Store
+dist
+.vagrant
+cordova/platforms
+cordova/platforms/*
+cordova/plugins
+cordova/plugins/*
+cordova/www
+cordova/www/*
